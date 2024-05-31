@@ -1,9 +1,21 @@
+import pandas as pd
+import numpy as np
+from flask import Flask, request, jsonify
+import pymorphy3
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+import numpy as np
+import pandas as pd
+from gensim.models import Word2Vec
+import pickle
+
 nltk.download('stopwords')
 nltk.download('punkt')
 
-model = Word2Vec.load('data\word2vec-classification-50')
+model = Word2Vec.load('/content/drive/MyDrive/Colab_Notebooks/models/word2vec_class/word2vec-classification-50')
 
-with open('data\classifier.pkl', 'rb') as file:
+with open('/content/drive/MyDrive/Colab_Notebooks/models/word2vec_class/classifier.pkl', 'rb') as file:
     classifier = pickle.load(file)
     
 def preprocess(text, stop_words, punctuation_marks, morph):
